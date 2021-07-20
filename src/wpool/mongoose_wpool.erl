@@ -300,8 +300,8 @@ get_unique_types(Pools) ->
     ordsets:to_list(ordsets:from_list([Type || {Type, _, _, _, _} <- Pools])).
 
 get_pool(Type, Host, Tag) ->
-    case ets:lookup(?MODULE, {Type, Host, Tag}) of
-        [] when is_binary(Host) -> get_pool(Type, global, Tag);
-        [] -> {error, pool_not_started};
-        [Pool] -> {ok, Pool}
+    case catch ets:lookup(?MODULE, {Type, Host, Tag}) of
+        [Pool] -> {ok, Pool};
+        _ when is_binary(Host) -> get_pool(Type, global, Tag);
+        _ -> {error, pool_not_started}
     end.
