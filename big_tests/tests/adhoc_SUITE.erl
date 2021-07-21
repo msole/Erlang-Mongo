@@ -54,7 +54,6 @@ suite() ->
     escalus:suite().
 
 init_per_suite(Config) ->
-    mongoose_wpool:ensure_started(),
     escalus:init_per_suite(Config).
 
 end_per_suite(Config) ->
