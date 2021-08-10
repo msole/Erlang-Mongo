@@ -2,7 +2,7 @@
 
 use Unix::Syslog qw(:macros :subs);
 
-my $domain = $ARGV[0] || "example.com";
+my $domain = $ARGV[0] || "txokoabcn.com";
 
 while(1)
   {
